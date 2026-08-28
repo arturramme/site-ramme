@@ -1,0 +1,107 @@
+/* ==========================================================================
+   RAMME TECH — sections/sobre.css
+   Secao 03. Depois de duas secoes diagramaticas (eixo e anel), esta muda de
+   registro: o visual e a propria tipografia. A declaracao ocupa o lugar do
+   desenho e o monograma da marca vira marca d'agua ao fundo — unica vez em
+   que o simbolo aparece em escala grande na pagina.
+   ========================================================================== */
+
+@layer sections {
+  .sobre {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;       /* a marca d'agua sangra: nao pode gerar rolagem */
+  }
+
+  /* --- Marca d'agua ----------------------------------------------------- */
+  .sobre__marca {
+    position: absolute;
+    z-index: -1;
+    inset-block-start: 50%;
+    inset-inline-end: clamp(-7rem, -3vw, -1rem);
+    translate: 0 -50%;
+    inline-size: clamp(15rem, 42vw, 34rem);
+    color: var(--accent);
+    opacity: .06;
+    pointer-events: none;
+  }
+
+  .sobre__marca svg {
+    inline-size: 100%;
+    block-size: auto;
+    fill: currentColor;
+    stroke: none;
+  }
+
+  /* --- Declaracao -------------------------------------------------------
+     Bloco tipografico curto e alto contraste: e ele que segura a secao. */
+  .sobre__declaracao {
+    max-inline-size: 22ch;
+    text-wrap: balance;
+  }
+
+  .sobre .section__lead { max-inline-size: 46ch; }
+
+
+  /* --- Ficha: placa de identificacao ------------------------------------
+     <dl> e a semantica correta para pares rotulo/valor. Visualmente vira
+     uma regua de tres campos separados por filete. */
+  .ficha {
+    display: grid;
+    gap: var(--space-m);
+    margin-block-start: clamp(1.25rem, 5svb, 6rem);
+    padding-block-start: clamp(0.75rem, 2.5svb, 1.75rem);
+    border-block-start: 1px solid var(--line);
+  }
+
+  @media (width >= 42rem) {
+    .ficha {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .ficha__campo + .ficha__campo {
+      padding-inline-start: clamp(1rem, 3vw, 2.5rem);
+      border-inline-start: 1px solid var(--line);
+    }
+  }
+
+  .ficha dt {
+    margin-block-end: 0.45rem;
+    color: var(--text-dim);
+  }
+
+  .ficha dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.012em;
+    color: var(--text);
+  }
+
+  .ficha__pessoas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1rem;
+  }
+
+  /* Coordenada real de Novo Hamburgo: detalhe tecnico que ancora a base
+     sem precisar de mapa. */
+  .ficha__coord {
+    display: block;
+    margin-block-start: 0.2rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+  }
+
+  @media (height >= 58rem) {
+    .ficha dd { font-size: var(--step-1); }
+    .ficha dt,
+    .ficha__coord { font-size: var(--step--1); }
+  }
+}

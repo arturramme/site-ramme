@@ -1,0 +1,204 @@
+/* ==========================================================================
+   RAMME TECH — sections/processo.css
+   Secao 02. O processo desenhado como ciclo, nao como reta: a etapa 04
+   volta para a 01, que e o que de fato acontece numa implantacao.
+   A geometria circular tambem e o unico lugar da pagina onde ela aparece —
+   quebra a repeticao de colunas numeradas da secao 01.
+   O texto e minimo de proposito: o desenho carrega o sentido.
+   ========================================================================== */
+
+@layer sections {
+  /* --- Composicao: texto a esquerda, ciclo a direita ------------------- */
+  .processo__grade {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  @media (width >= 75rem) {
+    .processo__grade {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      column-gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: center;
+    }
+  }
+
+  /* O ciclo decide o proprio arranjo pela largura que recebe, nao pela da
+     janela: assim funciona igual ocupando a coluna da direita ou a largura
+     inteira, sem duplicar breakpoints. */
+  .ciclo-wrap { container-type: inline-size; }
+
+  /* --- Ciclo: empilhado por padrao ------------------------------------- */
+  .ciclo {
+    display: grid;
+    justify-items: start;
+    align-items: center;
+    gap: var(--space-l);
+    margin-inline: auto;
+  }
+
+  .ciclo__anel {
+    position: relative;
+    /* svb no meio do clamp: em telas baixas o anel encolhe junto, senao a
+       composicao estoura a altura da janela. */
+    inline-size: clamp(9rem, min(42cqi, 34svb), 23rem);
+    aspect-ratio: 1;
+    justify-self: center;
+  }
+
+  /* --- Ciclo: anel ao centro, etapas nos pontos cardeais --------------- */
+  @container (min-width: 38rem) {
+    .ciclo {
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      column-gap: clamp(1rem, 4cqi, 2.5rem);
+      row-gap: clamp(0.6rem, 2.5svb, 2rem);
+      justify-items: center;
+    }
+
+    .ciclo__anel { grid-area: 2 / 2; }
+    .etapa--1 { grid-area: 1 / 2; text-align: center; }
+    .etapa--2 { grid-area: 2 / 3; justify-self: start; }
+    .etapa--3 { grid-area: 3 / 2; text-align: center; }
+    .etapa--4 { grid-area: 2 / 1; justify-self: end; text-align: right; }
+  }
+
+  /* Abaixo de 1290px o anel sai de cena: nao sobra largura para o arranjo
+     cardeal sem espremer os rotulos em tres linhas. Ficam so as etapas,
+     em grade. Vem depois do @container de proposito — mesma especificidade,
+     entao quem estiver por ultimo no arquivo vence. */
+  @media (width < 80.625rem) {
+    .ciclo__anel { display: none; }
+
+    .ciclo {
+      grid-template-columns: 1fr;
+      column-gap: clamp(1.25rem, 3vw, 2.5rem);
+      row-gap: clamp(1.25rem, 4svb, 2.5rem);
+      justify-items: start;
+      align-items: start;
+    }
+
+    /* Sao quatro etapas: os unicos arranjos equilibrados sao 1x4, 2x2 e
+       4x1 — nunca 3+1. Por isso as colunas sao explicitas, e vem de
+       container query porque a largura disponivel muda conforme o bloco
+       esteja na coluna da direita ou ocupando a largura inteira. */
+    @container (min-width: 26rem) {
+      .ciclo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @container (min-width: 52rem) {
+      .ciclo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+
+    .etapa--1,
+    .etapa--2,
+    .etapa--3,
+    .etapa--4 {
+      grid-area: auto;
+      justify-self: start;
+      text-align: start;
+    }
+
+    .etapa { max-inline-size: none; }
+  }
+
+  /* --- Anel ------------------------------------------------------------ */
+  .ciclo__anel svg {
+    inline-size: 100%;
+    block-size: 100%;
+    overflow: visible;
+  }
+
+  .anel__trilho {
+    fill: none;
+    stroke: var(--line-strong);
+    stroke-width: 1;
+  }
+
+  .anel__no {
+    fill: var(--accent);
+    stroke: none;
+  }
+
+  /* Recorte na cor do fundo para o no assentar sobre o trilho. */
+  .anel__no-fundo {
+    fill: var(--bg);
+    stroke: none;
+  }
+
+  .section--sunk .anel__no-fundo { fill: var(--surface-sunk); }
+
+  /* Pulso orbitando: e ele que indica o sentido do ciclo, dispensando
+     setas. Comprimento do traco + intervalo somam a circunferencia. */
+  .anel__pulso {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 30 522.9;
+    transform-box: view-box;
+    transform-origin: center;
+    transform: rotate(-90deg);
+    animation: orbita 9s linear infinite;
+  }
+
+  @keyframes orbita {
+    to { stroke-dashoffset: -552.9; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anel__pulso { animation: none; }
+  }
+
+  .ciclo__centro {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    color: var(--text-dim);
+    pointer-events: none;
+  }
+
+  /* --- Etapas ---------------------------------------------------------- */
+  .etapa {
+    display: grid;
+    gap: 0.2rem;
+    max-inline-size: 15rem;
+  }
+
+  .etapa__num {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .etapa__nome {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: var(--tracking-tight);
+    color: var(--text);
+  }
+
+  .etapa__saida {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.06em;
+  }
+
+  /* Janelas baixas: o nome da etapa desce um degrau para a composicao
+     inteira continuar cabendo. Janelas altas: sobe. */
+  @media (height < 52rem) {
+    .etapa__nome { font-size: var(--step-0); }
+  }
+
+  @media (height >= 58rem) {
+    .etapa__nome { font-size: var(--step-2); }
+    .etapa__num,
+    .etapa__saida { font-size: var(--step--1); }
+  }
+}

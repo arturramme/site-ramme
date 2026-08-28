@@ -1,0 +1,421 @@
+/* ==========================================================================
+   RAMME TECH — layout.css
+   Estruturas de pagina: container, header/nav, casca das secoes, rodape.
+   ========================================================================== */
+
+@layer layout {
+  /* --- Container fluido --------------------------------------------- */
+  .wrap {
+    inline-size: min(100% - (var(--gutter) * 2), var(--wrap));
+    margin-inline: auto;
+  }
+
+  .wrap--narrow { --wrap: var(--wrap-narrow); }
+
+  /* ==================================================================
+     HEADER
+     Sticky em toda a pagina. Transparente sobre o hero e ganha
+     superficie + hairline apenas depois que a rolagem comeca.
+     ================================================================== */
+  .site-header {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 50;
+    background-color: transparent;
+    border-block-end: 1px solid transparent;
+    transition:
+      background-color var(--dur-2) var(--ease-out),
+      border-color var(--dur-2) var(--ease-out),
+      backdrop-filter var(--dur-2) var(--ease-out);
+  }
+
+  .site-header[data-scrolled="true"] {
+    background-color: color-mix(in oklab, var(--bg) 80%, transparent);
+    border-block-end-color: var(--line);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    backdrop-filter: blur(14px) saturate(150%);
+  }
+
+  .site-header__inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--space-m);
+    min-block-size: var(--header-h);
+  }
+
+  /* --- Marca --------------------------------------------------------- */
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    border-radius: var(--radius-s);
+  }
+
+  .brand__mark {
+    inline-size: 2rem;
+    block-size: 2rem;
+    color: var(--brand-mark);
+    transition: transform var(--dur-2) var(--ease-out);
+  }
+
+  .brand:hover .brand__mark { transform: rotate(-6deg) scale(1.04); }
+
+  .brand__name > b { font-weight: 700; }
+  .brand__name > span {
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  /* --- Navegacao principal ------------------------------------------ */
+  .site-nav__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.25rem, 1.4vw, 1.25rem);
+  }
+
+  .site-nav__link {
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45em;
+    padding: 0.6rem 0.7rem;
+    border-radius: var(--radius-s);
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color var(--dur-1) var(--ease-out);
+  }
+
+  .site-nav__idx {
+    font-family: var(--font-mono);
+    font-size: 0.68em;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    transition: color var(--dur-1) var(--ease-out);
+  }
+
+  .site-nav__link::after {
+    content: "";
+    position: absolute;
+    inset-block-end: 0.25rem;
+    inset-inline: 0.7rem;
+    block-size: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-2) var(--ease-out);
+  }
+
+  .site-nav__link:hover,
+  .site-nav__link[aria-current="true"] { color: var(--text); }
+
+  .site-nav__link:hover .site-nav__idx,
+  .site-nav__link[aria-current="true"] .site-nav__idx { color: var(--accent); }
+
+  .site-nav__link:hover::after,
+  .site-nav__link[aria-current="true"]::after { transform: scaleX(1); }
+
+  /* --- Acoes do header ---------------------------------------------- */
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    justify-self: end;
+  }
+
+  .icon-button {
+    display: grid;
+    place-items: center;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    border-radius: var(--radius-s);
+    color: var(--text-muted);
+    transition:
+      color var(--dur-1) var(--ease-out),
+      background-color var(--dur-1) var(--ease-out);
+  }
+
+  .icon-button:hover {
+    color: var(--text);
+    background-color: color-mix(in oklab, var(--text) 8%, transparent);
+  }
+
+  .icon-button svg { inline-size: 1.25rem; block-size: 1.25rem; }
+
+  /* Troca dos icones de tema conforme o estado resolvido. */
+  .theme-toggle .icon-sun { display: none; }
+  :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+  :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+  /* --- Botao do menu (so mobile) ------------------------------------ */
+  .nav-toggle { display: none; }
+
+  .nav-toggle__bars {
+    display: grid;
+    gap: 5px;
+    inline-size: 1.125rem;
+  }
+
+  .nav-toggle__bars span {
+    block-size: 2px;
+    border-radius: 2px;
+    background-color: currentColor;
+    transition: transform var(--dur-2) var(--ease-out), opacity var(--dur-1) linear;
+  }
+
+  .site-header[data-nav="open"] .nav-toggle__bars span:first-child {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .site-header[data-nav="open"] .nav-toggle__bars span:nth-child(2) { opacity: 0; }
+  .site-header[data-nav="open"] .nav-toggle__bars span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ==================================================================
+     HEADER — abaixo de 60rem vira painel suspenso
+     Sem JS a navegacao permanece visivel (fallback progressivo).
+     ================================================================== */
+  @media (width < 60rem) {
+    .site-header__inner { grid-template-columns: auto 1fr; }
+
+    .nav-toggle { display: grid; }
+
+    .site-nav {
+      grid-column: 1 / -1;
+      padding-block-end: var(--space-s);
+    }
+
+    .site-nav__list {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    [data-js="on"] .site-nav {
+      position: absolute;
+      inset-block-start: 100%;
+      inset-inline: 0;
+      z-index: -1;
+      padding: var(--space-s) var(--gutter) var(--space-l);
+      background-color: var(--bg-elevated);
+      border-block-end: 1px solid var(--line);
+      box-shadow: var(--shadow-l);
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-0.75rem);
+      transition:
+        opacity var(--dur-2) var(--ease-out),
+        transform var(--dur-2) var(--ease-out),
+        visibility 0s linear var(--dur-2);
+    }
+
+    [data-js="on"] .site-header[data-nav="open"] .site-nav {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0s;
+    }
+
+    [data-js="on"] .site-nav__list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    [data-js="on"] .site-nav__link {
+      /* flex (nao inline-flex) para o item ocupar a largura toda e a
+         linha divisoria ficar alinhada entre todos os itens. */
+      display: flex;
+      padding-block: var(--space-s);
+      font-size: var(--step-1);
+      border-block-end: 1px solid var(--line);
+      border-radius: 0;
+    }
+
+    [data-js="on"] .site-nav__link::after { display: none; }
+  }
+
+  /* ==================================================================
+     CASCA DAS SECOES
+     Padrao unico reutilizado por Solucoes, Projetos, Sobre e Contato.
+     ================================================================== */
+  .section {
+    --section-pad: var(--space-3xl);
+
+    position: relative;
+    padding-block: var(--section-pad);
+    /* A ancora alinha o CONTEUDO sob o header, nao a borda da secao: com o
+       respiro generoso do padding, chegar pelo menu mostraria quase so
+       vazio. O calculo cancela o padding proprio e devolve um respiro fixo,
+       entao continua correto se o padding mudar. */
+    scroll-margin-block-start: calc(var(--space-l) - var(--section-pad));
+  }
+
+  .section + .section { border-block-start: 1px solid var(--line); }
+
+  .section--sunk { background-color: var(--surface-sunk); }
+
+  /* Secao-tela: para composicoes que precisam ser vistas de uma vez.
+     O min() garante as duas pontas — nunca passa da altura da janela (nao
+     exige rolagem) e nunca estica alem de 44rem (nao vira vazio em monitor
+     alto). O conteudo fica centrado no que sobrar. */
+  .section--tela {
+    --section-pad: clamp(1.5rem, 5svb, 5rem);
+
+    display: grid;
+    align-content: center;
+    min-block-size: calc(100svb - var(--header-h));
+    /* Esta secao cabe inteira na tela e centra o proprio conteudo: chegar
+       pela borda superior e o alinhamento certo. */
+    scroll-margin-block-start: 0;
+  }
+
+  .section--tela .section__head { margin-block-end: clamp(1.25rem, 3.5svb, 3rem); }
+  .section--tela .section__foot { margin-block-start: clamp(1.25rem, 3.5svb, 3rem); }
+
+  /* A escala tipografica so enxerga a largura (vw). Numa janela alta o
+     texto ja esta no teto do clamp e a secao sobra altura; numa janela
+     baixa acontece o inverso. Os dois degraus abaixo corrigem isso. */
+  @media (height < 46rem) {
+    .section--tela .section__head { gap: var(--space-2xs); }
+    .section--tela .section__title { font-size: var(--step-2); }
+    .section--tela .section__lead { font-size: var(--step--1); }
+  }
+
+  @media (height >= 58rem) {
+    .section--tela .section__title { font-size: clamp(2.75rem, 5svb, 4rem); }
+    .section--tela .section__lead { font-size: var(--step-1); }
+  }
+
+  .section__head {
+    display: grid;
+    gap: var(--space-s);
+    max-inline-size: 44rem;
+    margin-block-end: var(--space-xl);
+  }
+
+  .section__index {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75em;
+    color: var(--accent);
+  }
+
+  .section__index::after {
+    content: "";
+    inline-size: clamp(1.5rem, 5vw, 4rem);
+    block-size: 1px;
+    background-color: var(--line-strong);
+  }
+
+  .section__title {
+    font-size: var(--step-3);
+    color: var(--text);
+  }
+
+  .section__lead {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-0);
+    line-height: 1.55;
+    letter-spacing: -0.012em;
+    color: var(--text-muted);
+    max-inline-size: 38rem;
+  }
+
+  /* Opcional para secoes futuras pesadas (galerias, listas longas):
+     adia render fora da viewport sem afetar SEO. Nao usar em secoes
+     curtas — o ganho e nulo e o salto de layout, real. */
+  .section--defer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 40rem;
+  }
+
+  /* Placeholder das etapas seguintes. Remover junto com a classe
+     quando a secao receber conteudo definitivo. */
+
+  .stub-note {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-m);
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-m);
+    color: var(--text-dim);
+    font-size: var(--step--1);
+  }
+
+  /* Fecho de secao: uma linha de arremate com uma chamada secundaria.
+     Usado por todas as secoes de conteudo. */
+  .section__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs) var(--space-s);
+    margin-block-start: var(--space-xl);
+    padding-block-start: var(--space-m);
+    border-block-start: 1px solid var(--line);
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: -0.012em;
+    color: var(--text-muted);
+  }
+
+  /* ==================================================================
+     RODAPE
+     ================================================================== */
+  .site-footer {
+    padding-block: var(--space-2xl) var(--space-xl);
+    border-block-start: 1px solid var(--line);
+    background-color: var(--surface-sunk);
+  }
+
+  .site-footer__grid {
+    display: grid;
+    gap: var(--space-xl);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    align-items: start;
+  }
+
+  .site-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s) var(--space-m);
+    justify-content: space-between;
+    align-items: center;
+    margin-block-start: var(--space-xl);
+    padding-block-start: var(--space-m);
+    border-block-start: 1px solid var(--line);
+    color: var(--text-dim);
+    font-size: var(--step--1);
+  }
+
+  .site-footer__title {
+    color: var(--text-dim);
+    margin-block-end: var(--space-xs);
+  }
+
+  .site-footer__list {
+    display: grid;
+    gap: var(--space-3xs);
+    color: var(--text-muted);
+    font-size: var(--step--1);
+  }
+
+  .site-footer__tagline {
+    margin-block-start: var(--space-s);
+    color: var(--text-muted);
+    font-size: var(--step--1);
+    max-inline-size: 26ch;
+  }
+
+  .site-footer a:hover { color: var(--accent); }
+}

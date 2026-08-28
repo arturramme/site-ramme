@@ -1,0 +1,109 @@
+/* ==========================================================================
+   RAMME TECH — sections/solucoes.css
+   Secao 01. As tres frentes como estacoes numeradas de um eixo horizontal.
+   Mesma linguagem de ficha tecnica do console do hero, mas em colunas: a
+   secao inteira cabe em pouco mais de uma dobra.
+   ========================================================================== */
+
+@layer sections {
+  .solucoes {
+    display: grid;
+    /* auto-fit resolve os tres breakpoints sozinho: 3 colunas no desktop,
+       2 no tablet, 1 no celular — sem media query. */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+    row-gap: clamp(2rem, 6svb, 5rem);
+  }
+
+  .solucao {
+    --node: 2.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.4rem, 1.4svb, 0.75rem);
+  }
+
+  /* --- Eixo: no + trecho de linha + etiqueta ------------------------- */
+  .solucao__rail {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2xs) var(--space-xs);
+    margin-block-end: var(--space-2xs);
+  }
+
+  .solucao__node {
+    display: grid;
+    place-items: center;
+    flex: none;
+    inline-size: var(--node);
+    block-size: var(--node);
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .solucao__line {
+    flex: 1 1 1.5rem;
+    min-inline-size: 1.5rem;
+    block-size: 1px;
+    background: linear-gradient(to right, var(--line-strong), transparent);
+  }
+
+
+  /* --- Conteudo ------------------------------------------------------ */
+  .solucao__title {
+    font-size: var(--step-1);
+    line-height: 1.2;
+  }
+
+  /* --- Ficha: o que entra em cada frente ----------------------------- */
+  .solucao__specs {
+    margin-block-start: clamp(0.25rem, 1svb, 0.5rem);
+    padding-block-start: clamp(0.5rem, 1.8svb, 1rem);
+    border-block-start: 1px solid var(--line);
+  }
+
+  .solucao__specs ul {
+    display: grid;
+    gap: clamp(0.15rem, 0.8svb, 0.4rem);
+  }
+
+  .solucao__specs li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65em;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  /* Marcador em traco: linguagem de ficha tecnica, nao de bullet. */
+  .solucao__specs li::before {
+    content: "";
+    flex: none;
+    inline-size: 0.6rem;
+    block-size: 1px;
+    background-color: var(--accent);
+    translate: 0 -0.3em;
+  }
+
+  /* margin auto alinha os tres links na mesma base, independentemente
+     de as colunas terem alturas de texto diferentes. */
+  .solucao > .link-arrow {
+    align-self: start;
+    margin-block-start: auto;
+    padding-block-start: clamp(0.5rem, 2svb, 1.25rem);
+  }
+
+  /* Janela alta: o conteudo acompanha, senao a secao vira vazio. */
+  @media (height >= 58rem) {
+    .solucao__title { font-size: var(--step-2); }
+    .solucao__specs li { font-size: var(--step-0); }
+    .solucao > .link-arrow { font-size: var(--step-0); }
+  }
+}

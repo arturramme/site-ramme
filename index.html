@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="pt-BR" data-js="off">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Ramme Tech | Software para a indústria</title>
+  <meta name="description"
+    content="Software para o segmento industrial: produtos próprios e projetos sob medida que conectam o chão de fábrica à nuvem e otimizam processos. Novo Hamburgo/RS.">
+  <meta name="author" content="Ramme Tech">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://ramme.dev/">
+
+  <meta name="theme-color" content="#060b10">
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ramme Tech">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://ramme.dev/">
+  <meta property="og:title" content="Ramme Tech | Software para a indústria">
+  <meta property="og:description"
+    content="Produtos próprios e projetos sob medida que conectam o chão de fábrica à nuvem.">
+  <meta property="og:image" content="https://ramme.dev/assets/img/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ramme Tech — do chão de fábrica à decisão, em tempo real.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ramme Tech | Software para a indústria">
+  <meta name="twitter:description"
+    content="Produtos próprios e projetos sob medida que conectam o chão de fábrica à nuvem.">
+  <meta name="twitter:image" content="https://ramme.dev/assets/img/og-cover.png">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <!-- Tipografia: 3 famílias, poucos pesos, carregamento não bloqueante (swap) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;600;700&display=swap">
+
+  <!-- CSS em camadas (@layer). A ordem da cascata é declarada em tokens.css,
+       portanto a ordem dos <link> não altera o resultado. -->
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/sections/hero.css">
+  <link rel="stylesheet" href="assets/css/sections/solucoes.css">
+  <link rel="stylesheet" href="assets/css/sections/processo.css">
+  <link rel="stylesheet" href="assets/css/sections/sobre.css">
+  <link rel="stylesheet" href="assets/css/sections/contato.css">
+
+  <!-- Resolve o tema antes da primeira pintura (evita flash de tema errado). -->
+  <script>
+    (function () {
+      var r = document.documentElement;
+      r.setAttribute('data-js', 'on');
+      try {
+        // Escuro e o padrao; claro so se o visitante tiver escolhido.
+        r.setAttribute('data-theme', localStorage.getItem('ramme-theme') || 'dark');
+      } catch (e) {
+        r.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://ramme.dev/#organization",
+    "name": "Ramme Tech",
+    "url": "https://ramme.dev/",
+    "logo": "https://ramme.dev/assets/img/favicon.svg",
+    "email": "contato@ramme.dev",
+    "description": "Desenvolvimento de software para o segmento industrial: produtos próprios e projetos sob medida.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Novo Hamburgo",
+      "addressRegion": "RS",
+      "addressCountry": "BR"
+    },
+    "makesOffer": [
+      { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "SysColect", "applicationCategory": "BusinessApplication" } },
+      { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "VectorHub", "applicationCategory": "BusinessApplication" } }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ====================================================================
+       Sprite de ícones. Um único bloco inline: zero requisições extras,
+       herda currentColor e some do fluxo (aria-hidden).
+       ==================================================================== -->
+  <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-brand" viewBox="0 0 42.23 42.23">
+      <rect width="42.23" height="42.23" rx="7.81" fill="currentColor" stroke="none" />
+      <g fill="#fff" stroke="none" transform="translate(-38.8216,-101.2177)">
+        <rect width="5.3226" height="30.5161" x="42.4032" y="106.9839" ry="3.8145" />
+        <rect width="5.3226" height="5.4556" x="48.7016" y="106.9839" ry="2.506" />
+        <rect width="5.3226" height="15.8347" x="55" y="106.9839" ry="3.8145" />
+        <rect width="5.3226" height="16.5887" x="-34.4486" y="128.8239" ry="3.8145"
+          transform="rotate(-35.871486)" />
+        <rect width="5.3226" height="15.8347" x="106.9839" y="-77.4657" ry="3.8145" transform="rotate(90)" />
+        <rect width="5.3226" height="24.3952" x="66.8871" y="113.2823" ry="3.8145" />
+      </g>
+    </symbol>
+
+    <symbol id="i-brand-glyph" viewBox="3.58 5.77 35.07 31.01">
+      <g fill="currentColor" stroke="none" transform="translate(-38.8216,-101.2177)">
+        <rect width="5.3226" height="30.5161" x="42.4032" y="106.9839" ry="3.8145" />
+        <rect width="5.3226" height="5.4556" x="48.7016" y="106.9839" ry="2.506" />
+        <rect width="5.3226" height="15.8347" x="55" y="106.9839" ry="3.8145" />
+        <rect width="5.3226" height="16.5887" x="-34.4486" y="128.8239" ry="3.8145"
+          transform="rotate(-35.871486)" />
+        <rect width="5.3226" height="15.8347" x="106.9839" y="-77.4657" ry="3.8145" transform="rotate(90)" />
+        <rect width="5.3226" height="24.3952" x="66.8871" y="113.2823" ry="3.8145" />
+      </g>
+    </symbol>
+
+    <symbol id="i-logo-syscolect" viewBox="0 0 100 100">
+      <path fill="currentColor" stroke="none" d="M 59.062773,3.6394938 A 47.240253,47.240253 0 0 0 3.6279523,40.925686 47.240253,47.240253 0 0 0 2.8171773,48.047094 C 12.856706,59.411726 27.045407,67.064497 42.08194,69.092658 55.877862,70.953483 70.263582,68.125274 82.329453,61.1823 72.217222,74.063906 55.432487,81.392889 39.110858,80.052212 30.592303,79.352488 22.26818,76.411095 15.200368,71.604699 11.012439,68.75674 7.275612,65.254437 4.1355511,61.281164 A 47.240253,47.240253 0 0 0 40.914145,96.360506 47.240253,47.240253 0 0 0 96.348965,59.074314 47.240253,47.240253 0 0 0 97.182823,51.977326 C 87.142029,40.598803 72.942616,32.937 57.894978,30.907342 44.099056,29.046517 29.713336,31.874726 17.647465,38.817701 27.759696,25.936094 44.544431,18.607111 60.86606,19.947788 c 8.518555,0.699724 16.842678,3.641117 23.91049,8.447513 4.196338,2.853678 7.940118,6.364046 11.084066,10.347205 A 47.240253,47.240253 0 0 0 59.062773,3.6394938 Z" />
+    </symbol>
+    <symbol id="i-logo-vectorhub" viewBox="0 0 56.320129 56.333134">
+      <g transform="translate(-1.041027,-1.3366108)">
+        <path fill="currentColor" stroke="none" d="M 15.077984,57.669744 C 10.398998,38.892039 5.720013,20.114318 1.041027,1.3366108 H 9.640003 C 12.952796,15.234167 16.26559,29.131718 19.578383,43.029278 L 29.195305,1.3366108 h 8.411459 C 31.207927,12.318475 24.430245,21.574125 23.543019,57.669744 Z m 9.731215,0 C 25.050763,37.825733 27.422025,18.490896 38.914038,1.3366108 h 6.3325 C 44.297627,2.4008707 37.717496,10.915233 34.423957,23.508651 h 5.782115 C 43.167159,16.117972 44.809536,8.7272903 51.294782,1.3366108 h 6.066375 C 46.112639,17.753577 45.20585,24.893765 44.232126,57.669744 h -6.066377 l 2.040323,-24.631333 h -6.846631 c -1.621028,2.195067 -2.306728,17.38846 -2.395162,24.631333 z" />
+      </g>
+    </symbol>
+
+    <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <symbol id="i-arrow-right" viewBox="0 0 24 24">
+        <path d="M4.5 12h15m0 0-5.75-5.75M19.5 12l-5.75 5.75" />
+      </symbol>
+      <symbol id="i-arrow-up-right" viewBox="0 0 24 24">
+        <path d="M7 17 17 7m0 0H8.5M17 7v8.5" />
+      </symbol>
+      <symbol id="i-arrow-up" viewBox="0 0 24 24">
+        <path d="M12 19.5v-15m0 0L6.25 10.25M12 4.5l5.75 5.75" />
+      </symbol>
+      <symbol id="i-arrow-down" viewBox="0 0 24 24">
+        <path d="M12 4.5v15m0 0 5.75-5.75M12 19.5l-5.75-5.75" />
+      </symbol>
+      <symbol id="i-cloud" viewBox="0 0 24 24">
+        <path d="M17.2 19.2H7.1a4.6 4.6 0 0 1-.6-9.15 6.1 6.1 0 0 1 11.6-.7 4.95 4.95 0 0 1-.9 9.85Z" />
+        <path d="M9.6 14.4h4.8" />
+      </symbol>
+      <symbol id="i-hub" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="2.5" />
+        <circle cx="12" cy="4" r="1.9" />
+        <circle cx="4.7" cy="19.2" r="1.9" />
+        <circle cx="19.3" cy="19.2" r="1.9" />
+        <path d="M12 5.9v3.6M10.1 13.9 6.2 17.6M13.9 13.9l3.9 3.7" />
+      </symbol>
+      <symbol id="i-factory" viewBox="0 0 24 24">
+        <path d="M3 19.5V10l5 3V10l5 3V6.6h2l1 6.6 5 2.7v3.6Z" />
+        <path d="M2.2 19.5h19.6M8 16.6h1.5M13 16.6h1.5" />
+      </symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2.6v2.2M12 19.2v2.2M4.4 12H2.2M21.8 12h-2.2M6.6 6.6 5 5M19 19l-1.6-1.6M6.6 17.4 5 19M19 5l-1.6 1.6" />
+      </symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24">
+        <path d="M20 14.2A8.4 8.4 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2Z" />
+      </symbol>
+    </g>
+  </svg>
+
+  <!-- ====================================================================
+       HEADER — marca, navegação numerada e ações persistentes
+       ==================================================================== -->
+  <header class="site-header" data-header>
+    <div class="site-header__inner wrap">
+      <a class="brand" href="#inicio" aria-label="Ramme Tech — ir para o início">
+        <svg class="brand__mark" viewBox="0 0 42.23 42.23" aria-hidden="true" focusable="false">
+          <use href="#i-brand" />
+        </svg>
+        <span class="brand__name"><b>Ramme</b> <span>Tech</span></span>
+      </a>
+
+      <nav class="site-nav" id="nav-principal" aria-label="Navegação principal">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="#solucoes"><span class="site-nav__idx"
+                aria-hidden="true">01</span>Soluções</a></li>
+          <li><a class="site-nav__link" href="#processo"><span class="site-nav__idx"
+                aria-hidden="true">02</span>Processo</a></li>
+          <li><a class="site-nav__link" href="#sobre"><span class="site-nav__idx"
+                aria-hidden="true">03</span>Sobre</a></li>
+          <li><a class="site-nav__link" href="#contato"><span class="site-nav__idx"
+                aria-hidden="true">04</span>Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <button class="icon-button theme-toggle" type="button" data-theme-toggle
+          aria-label="Alternar entre tema claro e escuro">
+          <svg class="icon-sun" aria-hidden="true" focusable="false">
+            <use href="#i-sun" />
+          </svg>
+          <svg class="icon-moon" aria-hidden="true" focusable="false">
+            <use href="#i-moon" />
+          </svg>
+        </button>
+
+        <a class="btn btn--sm btn--primary u-hide@lg" href="#contato">Fale conosco</a>
+
+        <button class="icon-button nav-toggle" type="button" data-nav-toggle aria-controls="nav-principal"
+          aria-expanded="false">
+          <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="sr-only">Abrir menu de navegação</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ==================================================================
+         00 — INÍCIO (dobra)
+         ================================================================== -->
+    <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+      <div class="hero__bg" aria-hidden="true">
+        <span class="hero__grid"></span>
+        <span class="hero__glow hero__glow--a"></span>
+        <span class="hero__glow hero__glow--b"></span>
+      </div>
+
+      <div class="hero__inner wrap">
+        <div class="hero__copy">
+          <p class="eyebrow mono reveal">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            Software para quem produz
+          </p>
+
+          <h1 class="hero__title reveal" id="hero-titulo" style="--reveal-delay:60ms">
+            Do chão de fábrica à decisão,
+            <em class="hero__accent">em tempo real</em>.
+          </h1>
+
+          <p class="hero__lead reveal" style="--reveal-delay:120ms">
+            Produtos prontos para entrar em operação rápido e desenvolvimento sob medida quando o
+            processo pede.
+          </p>
+
+          <div class="hero__actions reveal" style="--reveal-delay:180ms">
+            <a class="btn btn--primary" href="#contato">
+              Falar com a equipe
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right" />
+              </svg>
+            </a>
+            <a class="btn btn--ghost" href="#solucoes">Ver soluções</a>
+          </div>
+        </div>
+
+        <!-- Representação visual: a arquitetura que a empresa entrega -->
+        <figure class="hero__figure reveal" style="--reveal-delay:240ms">
+          <div class="console">
+            <div class="console__bar">
+              <span class="console__title">Arquitetura</span>
+              <span class="console__live"><span class="pulse-dot" aria-hidden="true"></span>Ao vivo</span>
+            </div>
+
+            <ol class="stack">
+              <li class="layer" data-tier="cloud">
+                <span class="layer__icon" aria-hidden="true">
+                  <svg focusable="false">
+                    <use href="#i-cloud" />
+                  </svg>
+                </span>
+                <span class="layer__body">
+                  <span class="layer__name">Nuvem · <b>SysColect</b></span>
+                  <span class="layer__desc">Programação, produção, processos e WMS.</span>
+                </span>
+                <span class="layer__tag">SaaS</span>
+              </li>
+
+              <li class="flow" style="--flow-color: var(--c-signal)">
+                <span class="flow__track" aria-hidden="true"></span>
+                <span class="flow__label">
+                  <svg aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-up" />
+                  </svg>
+                  Eventos e leituras
+                </span>
+              </li>
+
+              <li class="layer" data-tier="bridge">
+                <span class="layer__icon" aria-hidden="true">
+                  <svg focusable="false">
+                    <use href="#i-hub" />
+                  </svg>
+                </span>
+                <span class="layer__body">
+                  <span class="layer__name">Integração · <b>VectorHub</b></span>
+                  <span class="layer__desc">Agente local que executa comandos da nuvem no ambiente
+                    on-premise.</span>
+                </span>
+                <span class="layer__tag">On-premise</span>
+              </li>
+
+              <li class="flow flow--down" style="--flow-color: var(--c-brand-400); --flow-delay: .9s">
+                <span class="flow__track" aria-hidden="true"></span>
+                <span class="flow__label">
+                  <svg aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-down" />
+                  </svg>
+                  Comandos e rotinas
+                </span>
+              </li>
+
+              <li class="layer" data-tier="edge">
+                <span class="layer__icon" aria-hidden="true">
+                  <svg focusable="false">
+                    <use href="#i-factory" />
+                  </svg>
+                </span>
+                <span class="layer__body">
+                  <span class="layer__name">Chão de fábrica</span>
+                  <span class="layer__desc">Coletores, balanças, CLPs, impressoras e sistemas locais.</span>
+                </span>
+                <span class="layer__tag">Edge</span>
+              </li>
+            </ol>
+          </div>
+
+          <figcaption class="sr-only">
+            Diagrama em três camadas, listadas a seguir de cima para baixo. Os dados sobem do chão de fábrica
+            até a nuvem através do VectorHub, que também executa localmente os comandos enviados pela nuvem.
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- Régua da dobra: prova rápida + convite à rolagem -->
+      <div class="hero__rail wrap">
+        <ul class="chip-row">
+          <li><a class="chip" href="https://syscolect.com" target="_blank" rel="noopener"><svg class="chip__logo chip__logo--syscolect" aria-hidden="true" focusable="false"><use href="#i-logo-syscolect" /></svg> SysColect</a></li>
+          <li><a class="chip" href="https://vectorhub.ramme.dev" target="_blank" rel="noopener"><svg class="chip__logo chip__logo--vectorhub" aria-hidden="true" focusable="false"><use href="#i-logo-vectorhub" /></svg> VectorHub</a></li>
+          <li><span class="chip"><span class="chip__key">Serviço</span> Projetos sob medida</span></li>
+        </ul>
+
+        <a class="scroll-cue" href="#solucoes">
+          Explorar
+          <svg aria-hidden="true" focusable="false">
+            <use href="#i-arrow-down" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         01 — SOLUÇÕES · estrutura pronta, conteúdo na próxima etapa
+         ================================================================== -->
+    <section class="section section--tela" id="solucoes" aria-labelledby="solucoes-titulo">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="section__index mono">01 — Soluções</p>
+          <h2 class="section__title" id="solucoes-titulo">O que resolvemos</h2>
+          <p class="section__lead">Transformamos desafios complexos em soluções digitais inteligentes.
+                                   Criamos tecnologia sob medida para resolver problemas reais,
+                                   gerar resultados e impulsionar o crescimento do seu negócio.</p>
+        </header>
+
+        <ol class="solucoes">
+          <li class="solucao reveal">
+            <div class="solucao__rail">
+              <span class="solucao__node">01</span>
+              <span class="solucao__line" aria-hidden="true"></span>
+            </div>
+
+            <h3 class="solucao__title">Operação industrial</h3>
+            
+            <div class="solucao__specs">
+              <ul>
+                <li>Programação da produção</li>
+                <li>Apontamento de chão de fábrica</li>
+                <li>Controle de processos</li>
+                <li>WMS e movimentação</li>
+                <li>Rastreabilidade de lote</li>
+              </ul>
+            </div>
+
+            <a class="link-arrow link-arrow--external" href="https://syscolect.com" target="_blank"
+                rel="noopener">
+              Conhecer o SysColect
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-arrow-up-right" />
+              </svg>
+            </a>
+          </li>
+
+          <li class="solucao reveal">
+            <div class="solucao__rail">
+              <span class="solucao__node">02</span>
+              <span class="solucao__line" aria-hidden="true"></span>
+            </div>
+
+            <h3 class="solucao__title">Integração on-premise</h3>
+            
+            <div class="solucao__specs">
+            <ul>
+                <li>Coletores e leitores</li>
+                <li>Balanças e impressoras</li>
+                <li>CLPs e equipamentos de linha</li>
+                <li>ERPs e bancos locais</li>
+                <li>Rotinas agendadas</li>
+              </ul>
+            </div>
+
+            <a class="link-arrow link-arrow--external" href="https://vectorhub.ramme.dev" target="_blank"
+                rel="noopener">
+              Conhecer o VectorHub
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-arrow-up-right" />
+              </svg>
+            </a>
+          </li>
+
+          <li class="solucao reveal">
+            <div class="solucao__rail">
+              <span class="solucao__node">03</span>
+              <span class="solucao__line" aria-hidden="true"></span>
+            </div>
+
+            <h3 class="solucao__title">Software sob medida</h3>
+
+            <div class="solucao__specs">
+              <ul>
+                <li>Levantamento em campo</li>
+                <li>Integração com sistemas existentes</li>
+                <li>Aplicações web e desktop</li>
+                <li>Evolução contínua</li>
+              </ul>
+            </div>
+
+            <a class="link-arrow" href="#contato">
+              Falar sobre o seu processo
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right" />
+              </svg>
+            </a>
+          </li>
+        </ol>
+
+        <p class="section__foot reveal">
+          Não sabe em qual delas o seu caso se encaixa?
+          <a class="link-arrow" href="#contato">
+            A gente ajuda a descobrir
+            <svg aria-hidden="true" focusable="false">
+              <use href="#i-arrow-right" />
+            </svg>
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         02 — PROJETOS
+         ================================================================== -->
+    <section class="section section--sunk section--tela" id="processo" aria-labelledby="processo-titulo">
+      <div class="wrap">
+        <div class="processo__grade">
+          <div class="processo__texto">
+            <header class="section__head reveal">
+              <p class="section__index mono">02 — Processo</p>
+              <h2 class="section__title" id="processo-titulo">Como trabalhamos</h2>
+              <p class="section__lead">Cada projeto segue um caminho claro, construído junto com quem vive a operação todos os dias.</p>
+            </header>
+
+            <p class="section__foot reveal">
+              Porque uma boa solução não é só aquela que funciona, é aquela que as pessoas realmente querem e conseguem usar.
+              <a class="link-arrow" href="#contato">
+                Começar pelo levantamento
+                <svg aria-hidden="true" focusable="false">
+                  <use href="#i-arrow-right" />
+                </svg>
+              </a>
+            </p>
+          </div>
+
+          <div class="ciclo-wrap reveal">
+            <ol class="ciclo">
+              <li class="ciclo__anel" aria-hidden="true">
+                <svg viewBox="0 0 200 200" focusable="false">
+                  <circle class="anel__trilho" cx="100" cy="100" r="88" />
+                  <circle class="anel__no-fundo" cx="100" cy="12" r="10" />
+                  <circle class="anel__no-fundo" cx="188" cy="100" r="10" />
+                  <circle class="anel__no-fundo" cx="100" cy="188" r="10" />
+                  <circle class="anel__no-fundo" cx="12" cy="100" r="10" />
+                  <circle class="anel__no" cx="100" cy="12" r="5" />
+                  <circle class="anel__no" cx="188" cy="100" r="5" />
+                  <circle class="anel__no" cx="100" cy="188" r="5" />
+                  <circle class="anel__no" cx="12" cy="100" r="5" />
+                  <circle class="anel__pulso" cx="100" cy="100" r="88" />
+                </svg>
+                <span class="ciclo__centro mono">Implantação</span>
+              </li>
+
+              <li class="etapa etapa--1">
+                <span class="etapa__num">01</span>
+                <span class="etapa__nome">Levantamento em campo</span>
+                <span class="etapa__saida">Mapa do processo</span>
+              </li>
+
+              <li class="etapa etapa--2">
+                <span class="etapa__num">02</span>
+                <span class="etapa__nome">Piloto em campo</span>
+                <span class="etapa__saida">Módulo em produção</span>
+              </li>
+
+              <li class="etapa etapa--3">
+                <span class="etapa__num">03</span>
+                <span class="etapa__nome">Operação assistida</span>
+                <span class="etapa__saida">Equipe autônoma</span>
+              </li>
+
+              <li class="etapa etapa--4">
+                <span class="etapa__num">04</span>
+                <span class="etapa__nome">Evolução contínua</span>
+                <span class="etapa__saida">Novos ciclos</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         03 — SOBRE
+         ================================================================== -->
+    <section class="section section--tela sobre" id="sobre" aria-labelledby="sobre-titulo">
+      <span class="sobre__marca" aria-hidden="true">
+        <svg viewBox="3.58 5.77 35.07 31.01" focusable="false">
+          <use href="#i-brand-glyph" />
+        </svg>
+      </span>
+
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="section__index mono">03 — A empresa</p>
+          <h2 class="section__title sobre__declaracao" id="sobre-titulo">
+            Você fala direto com quem entende do seu processo e constrói a solução.
+          </h2>
+          <p class="section__lead">
+            Unimos conhecimento técnico e experiência prática para entender o seu processo de perto. 
+            Sem intermediários entre quem identifica o problema, desenvolve a solução e acompanha sua implementação.
+          </p>
+        </header>
+
+        <dl class="ficha reveal">
+
+          <div class="ficha__campo">
+            <dt class="mono">Base</dt>
+            <dd>
+              Novo Hamburgo — RS
+              <span class="ficha__coord">29°41′S · 51°08′W</span>
+            </dd>
+          </div>
+
+          <div class="ficha__campo">
+            <dt class="mono">Foco</dt>
+            <dd>
+              Segmento industrial
+              <span class="ficha__coord">Produto próprio e projeto dedicado</span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         04 — CONTATO
+         ================================================================== -->
+    <section class="section section--sunk section--tela" id="contato" aria-labelledby="contato-titulo">
+      <div class="wrap">
+        <div class="contato__grade">
+          <div class="contato__texto">
+            <header class="section__head reveal">
+              <p class="section__index mono">04 — Contato</p>
+              <h2 class="section__title" id="contato-titulo">Vamos conversar</h2>
+              <p class="section__lead">
+                Conte o que está acontecendo na sua operação e vamos encontrar a melhor forma de resolver.
+              </p>
+            </header>
+
+            <div class="contato__alternativa reveal">
+              <span class="contato__alternativa-rotulo mono">Prefere e-mail</span>
+              <p class="contato__email">
+                <a href="mailto:contato@ramme.dev">contato@ramme.dev</a>
+                <button class="copiar" type="button" data-copiar="contato@ramme.dev">
+                  <span data-copiar-texto>Copiar</span>
+                </button>
+              </p>
+            </div>
+          </div>
+
+          <div class="contato__painel reveal">
+            <div class="contato__bar">
+              <span class="mono">Nova mensagem</span>
+            </div>
+
+            <form class="formulario" data-formulario novalidate>
+              <div class="formulario__linha">
+                <p class="campo" data-campo>
+                  <label class="campo__rotulo" for="campo-nome">Nome</label>
+                  <input id="campo-nome" name="nome" type="text" autocomplete="name" required
+                    aria-describedby="erro-nome">
+                  <span class="campo__erro" id="erro-nome"></span>
+                </p>
+
+                <p class="campo" data-campo>
+                  <label class="campo__rotulo" for="campo-email">E-mail</label>
+                  <input id="campo-email" name="email" type="email" autocomplete="email" required
+                    aria-describedby="erro-email">
+                  <span class="campo__erro" id="erro-email"></span>
+                </p>
+              </div>
+
+              <p class="campo" data-campo>
+                <label class="campo__rotulo" for="campo-telefone">
+                  Telefone <span class="campo__opcional">opcional</span>
+                </label>
+                <input id="campo-telefone" name="telefone" type="tel" autocomplete="tel"
+                  aria-describedby="erro-telefone">
+                <span class="campo__erro" id="erro-telefone"></span>
+              </p>
+
+              <p class="campo" data-campo>
+                <label class="campo__rotulo" for="campo-observacao">
+                  Observação <span class="campo__opcional">opcional</span>
+                </label>
+                <span class="campo__ajuda" id="ajuda-observacao">
+                  Qual processo está travando? Quantas pessoas dependem dele?
+                </span>
+                <textarea id="campo-observacao" name="observacao" rows="3"
+                  aria-describedby="ajuda-observacao"></textarea>
+              </p>
+
+              <!-- Armadilha para robô: invisível e fora da ordem de tabulação. -->
+              <p class="sr-only" aria-hidden="true">
+                <label for="campo-setor">Não preencha este campo</label>
+                <input id="campo-setor" name="setor" type="text" tabindex="-1" autocomplete="off">
+              </p>
+
+              <div class="formulario__acoes">
+                <button class="btn btn--primary" type="submit">
+                  <span data-enviar-texto>Enviar mensagem</span>
+                  <svg aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-right" />
+                  </svg>
+                </button>
+                <p class="formulario__estado" role="status" data-estado></p>
+              </div>
+
+              <p class="formulario__nota">Usamos seus dados apenas para responder este contato.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       RODAPÉ
+       ==================================================================== -->
+  <footer class="site-footer" id="rodape">
+    <div class="wrap">
+      <div class="site-footer__grid">
+        <div>
+          <a class="brand" href="#inicio">
+            <svg class="brand__mark" viewBox="0 0 42.23 42.23" aria-hidden="true" focusable="false">
+              <use href="#i-brand" />
+            </svg>
+            <span class="brand__name"><b>Ramme</b> <span>Tech</span></span>
+          </a>
+          <p class="site-footer__tagline">Software para quem produz.</p>
+        </div>
+
+        <nav aria-label="Navegação do rodapé">
+          <p class="mono site-footer__title">Navegação</p>
+          <ul class="site-footer__list">
+            <li><a href="#solucoes">Soluções</a></li>
+            <li><a href="#processo">Processo</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <p class="mono site-footer__title">Contato</p>
+          <ul class="site-footer__list">
+            <li><a href="mailto:contato@ramme.dev">contato@ramme.dev</a></li>
+            <li>Novo Hamburgo — RS, Brasil</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>&copy; <span data-year>2026</span> Ramme Tech. Todos os direitos reservados.</p>
+        <p class="mono">ramme.dev</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+
+</html>

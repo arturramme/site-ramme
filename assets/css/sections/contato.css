@@ -1,0 +1,238 @@
+/* ==========================================================================
+   RAMME TECH — sections/contato.css
+   Secao 04. O formulario mora dentro de um painel escuro — o mesmo console
+   que abre a pagina no hero. A ultima secao fecha o arco visual da primeira:
+   a conversa comeca e termina na mesma superficie.
+   ========================================================================== */
+
+@layer sections {
+  .contato__grade {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  @media (width >= 62rem) {
+    .contato__grade {
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+      column-gap: clamp(2rem, 5vw, 4.5rem);
+    }
+  }
+
+  /* --- Coluna de texto -------------------------------------------------- */
+  .contato__alternativa {
+    margin-block-start: clamp(1rem, 4.5svb, 5rem);
+    padding-block-start: clamp(0.75rem, 2.5svb, 1.5rem);
+    border-block-start: 1px solid var(--line);
+  }
+
+  .contato__alternativa-rotulo {
+    display: block;
+    margin-block-end: var(--space-2xs);
+    color: var(--text-dim);
+  }
+
+  .contato__email {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2xs) var(--space-s);
+  }
+
+  .contato__email a {
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    border-block-end: 1px solid var(--line-strong);
+    transition: color var(--dur-1) var(--ease-out), border-color var(--dur-1) var(--ease-out);
+  }
+
+  .contato__email a:hover {
+    color: var(--accent);
+    border-block-end-color: var(--accent);
+  }
+
+  .copiar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: border-color var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out);
+  }
+
+  .copiar:hover { border-color: var(--accent); color: var(--accent); }
+  .copiar[data-copiado="true"] { border-color: var(--c-signal); color: var(--c-signal); }
+
+
+  /* --- Painel do formulario --------------------------------------------
+     Mesma receita do console do hero: escuro nos dois temas, fio de luz no
+     topo e barra em monoespacada. */
+  .contato__painel {
+    position: relative;
+    border: 1px solid var(--panel-line);
+    border-radius: var(--radius-l);
+    background:
+      radial-gradient(120% 90% at 15% 0%, color-mix(in oklab, var(--c-brand-700) 24%, transparent), transparent 60%),
+      linear-gradient(180deg, var(--panel-surface), var(--panel-bg));
+    box-shadow: var(--shadow-l);
+    color: var(--panel-text);
+    overflow: hidden;
+  }
+
+  .contato__painel::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 12%;
+    block-size: 1px;
+    background: linear-gradient(90deg, transparent, var(--panel-accent), transparent);
+    opacity: .8;
+  }
+
+  /* O painel e escuro nos dois temas: o anel de foco precisa da cor clara. */
+  .contato__painel :focus-visible { outline-color: var(--c-brand-300); }
+
+  .contato__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding: 0.75rem clamp(0.875rem, 2vw, 1.25rem);
+    border-block-end: 1px solid var(--panel-line);
+    background-color: color-mix(in oklab, var(--panel-bg) 55%, transparent);
+    color: var(--panel-dim);
+  }
+
+  /* --- Formulario -------------------------------------------------------- */
+  .formulario {
+    display: grid;
+    gap: clamp(0.6rem, 2svb, 1.5rem);
+    padding: clamp(0.875rem, 2.8svb, 2.25rem);
+  }
+
+  @media (width >= 30rem) {
+    .formulario__linha {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-s);
+    }
+  }
+
+  .campo { display: grid; gap: 0.35rem; }
+
+  .campo__rotulo {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+    font-size: var(--step--1);
+    color: var(--panel-muted);
+  }
+
+  .campo__opcional {
+    color: var(--panel-dim);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    letter-spacing: 0.06em;
+    text-transform: none;
+  }
+
+  .campo__ajuda {
+    margin-block-end: 0.15rem;
+    color: var(--panel-dim);
+    font-size: var(--step--1);
+    line-height: 1.4;
+  }
+
+  .campo input,
+  .campo textarea {
+    inline-size: 100%;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--panel-line-strong);
+    border-radius: var(--radius-s);
+    background-color: color-mix(in oklab, var(--panel-bg) 65%, var(--panel-raised));
+    color: var(--panel-text);
+    font-family: var(--font-body);
+    /* 1rem fixo, nao a escala fluida: abaixo de 16px o iOS da zoom ao focar,
+       e acima disso o campo fica desproporcional ao resto do painel. */
+    font-size: 1rem;
+    line-height: 1.35;
+    transition: border-color var(--dur-1) var(--ease-out), background-color var(--dur-1) var(--ease-out);
+  }
+
+  .campo textarea {
+    min-block-size: 4.5rem;
+    resize: vertical;
+  }
+
+  .campo input::placeholder,
+  .campo textarea::placeholder { color: var(--panel-dim); }
+
+  .campo input:hover,
+  .campo textarea:hover { border-color: color-mix(in oklab, var(--panel-accent) 40%, var(--panel-line-strong)); }
+
+  .campo[data-erro] input,
+  .campo[data-erro] textarea { border-color: var(--panel-erro); }
+
+  .campo__erro {
+    color: var(--panel-erro);
+    font-size: var(--step--1);
+    min-block-size: 0;
+  }
+
+  .campo:not([data-erro]) .campo__erro { display: none; }
+
+  /* --- Acoes ------------------------------------------------------------- */
+  .formulario__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-s);
+    margin-block-start: var(--space-2xs);
+  }
+
+  /* Dentro do painel escuro o primario precisa do acento claro. */
+  .contato__painel .btn--primary {
+    --btn-bg: var(--panel-accent);
+    --btn-fg: #04121b;
+    --btn-border: var(--panel-accent);
+  }
+
+  .contato__painel .btn--primary:hover {
+    --btn-bg: var(--c-brand-300);
+    --btn-border: var(--c-brand-300);
+  }
+
+  .formulario__estado {
+    color: var(--panel-muted);
+    font-size: var(--step--1);
+  }
+
+  .formulario__estado[data-tipo="ok"] { color: color-mix(in oklab, var(--c-signal) 80%, #fff); }
+  .formulario__estado[data-tipo="erro"] { color: var(--panel-erro); }
+
+  .formulario[data-enviando="true"] { opacity: .7; pointer-events: none; }
+
+  .formulario__nota {
+    padding-block-start: var(--space-2xs);
+    color: var(--panel-dim);
+    font-size: var(--step--2);
+  }
+
+  @media (height >= 58rem) {
+    .campo__rotulo,
+    .campo__ajuda { font-size: var(--step-0); }
+    .campo input,
+    .campo textarea { padding-block: 0.8rem; }
+    .campo textarea { min-block-size: 6rem; }
+    .contato__email a { font-size: var(--step-1); }
+  }
+}
