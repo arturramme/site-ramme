@@ -112,18 +112,6 @@
       </g>
     </symbol>
 
-    <symbol id="i-brand-glyph" viewBox="3.58 5.77 35.07 31.01">
-      <g fill="currentColor" stroke="none" transform="translate(-38.8216,-101.2177)">
-        <rect width="5.3226" height="30.5161" x="42.4032" y="106.9839" ry="3.8145" />
-        <rect width="5.3226" height="5.4556" x="48.7016" y="106.9839" ry="2.506" />
-        <rect width="5.3226" height="15.8347" x="55" y="106.9839" ry="3.8145" />
-        <rect width="5.3226" height="16.5887" x="-34.4486" y="128.8239" ry="3.8145"
-          transform="rotate(-35.871486)" />
-        <rect width="5.3226" height="15.8347" x="106.9839" y="-77.4657" ry="3.8145" transform="rotate(90)" />
-        <rect width="5.3226" height="24.3952" x="66.8871" y="113.2823" ry="3.8145" />
-      </g>
-    </symbol>
-
     <symbol id="i-logo-syscolect" viewBox="0 0 100 100">
       <path fill="currentColor" stroke="none" d="M 59.062773,3.6394938 A 47.240253,47.240253 0 0 0 3.6279523,40.925686 47.240253,47.240253 0 0 0 2.8171773,48.047094 C 12.856706,59.411726 27.045407,67.064497 42.08194,69.092658 55.877862,70.953483 70.263582,68.125274 82.329453,61.1823 72.217222,74.063906 55.432487,81.392889 39.110858,80.052212 30.592303,79.352488 22.26818,76.411095 15.200368,71.604699 11.012439,68.75674 7.275612,65.254437 4.1355511,61.281164 A 47.240253,47.240253 0 0 0 40.914145,96.360506 47.240253,47.240253 0 0 0 96.348965,59.074314 47.240253,47.240253 0 0 0 97.182823,51.977326 C 87.142029,40.598803 72.942616,32.937 57.894978,30.907342 44.099056,29.046517 29.713336,31.874726 17.647465,38.817701 27.759696,25.936094 44.544431,18.607111 60.86606,19.947788 c 8.518555,0.699724 16.842678,3.641117 23.91049,8.447513 4.196338,2.853678 7.940118,6.364046 11.084066,10.347205 A 47.240253,47.240253 0 0 0 59.062773,3.6394938 Z" />
     </symbol>
@@ -501,25 +489,21 @@
               </li>
 
               <li class="etapa etapa--1">
-                <span class="etapa__num">01</span>
                 <span class="etapa__nome">Levantamento em campo</span>
                 <span class="etapa__saida">Mapa do processo</span>
               </li>
 
               <li class="etapa etapa--2">
-                <span class="etapa__num">02</span>
-                <span class="etapa__nome">Piloto em campo</span>
+                <span class="etapa__nome">Definição do piloto</span>
                 <span class="etapa__saida">Módulo em produção</span>
               </li>
 
               <li class="etapa etapa--3">
-                <span class="etapa__num">03</span>
                 <span class="etapa__nome">Operação assistida</span>
                 <span class="etapa__saida">Equipe autônoma</span>
               </li>
 
               <li class="etapa etapa--4">
-                <span class="etapa__num">04</span>
                 <span class="etapa__nome">Evolução contínua</span>
                 <span class="etapa__saida">Novos ciclos</span>
               </li>
@@ -533,42 +517,154 @@
          03 — SOBRE
          ================================================================== -->
     <section class="section section--tela sobre" id="sobre" aria-labelledby="sobre-titulo">
-      <span class="sobre__marca" aria-hidden="true">
-        <svg viewBox="3.58 5.77 35.07 31.01" focusable="false">
-          <use href="#i-brand-glyph" />
-        </svg>
-      </span>
-
       <div class="wrap">
-        <header class="section__head reveal">
-          <p class="section__index mono">03 — A empresa</p>
-          <h2 class="section__title sobre__declaracao" id="sobre-titulo">
-            Você fala direto com quem entende do seu processo e constrói a solução.
-          </h2>
-          <p class="section__lead">
-            Unimos conhecimento técnico e experiência prática para entender o seu processo de perto. 
-            Sem intermediários entre quem identifica o problema, desenvolve a solução e acompanha sua implementação.
-          </p>
-        </header>
+        <div class="sobre__topo">
+          <div class="ide" aria-hidden="true">
+            <div class="ide__barra">
+              <span class="ide__pontos"><i></i><i></i><i></i></span>
+              <span class="ide__aba"><b class="ide__ts">TS</b>apontamento.ts</span>
+              <span class="ide__caminho">src / coleta</span>
+            </div>
 
-        <dl class="ficha reveal">
+            <div class="ide__corpo">
+              <pre class="ide__linhas">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre>
+              <pre class="ide__codigo"><i class=k>import</i> { Coletor } <i class=k>from</i> <i class=s>&#39;@ramme/vectorhub&#39;</i>;
+<i class=k>import</i> { enfileirar, drenar } <i class=k>from</i> <i class=s>&#39;./fila&#39;</i>;
 
-          <div class="ficha__campo">
-            <dt class="mono">Base</dt>
-            <dd>
-              Novo Hamburgo — RS
-              <span class="ficha__coord">29°41′S · 51°08′W</span>
-            </dd>
+<i class=k>export type</i> <i class=t>Apontamento</i> = {
+  ordem: string;
+  posto: number;
+  quantidade: number;
+  turno: <i class=s>&#39;A&#39;</i> | <i class=s>&#39;B&#39;</i> | <i class=s>&#39;C&#39;</i>;
+};
+
+<i class=k>type</i> <i class=t>Resultado</i> =
+  | { ok: <i class=k>true</i>; id: string }
+  | { ok: <i class=k>false</i>; motivo: string };
+
+<i class=k>const</i> conectados = <i class=k>new</i> <i class=t>Map</i>&lt;string, <i class=t>Coletor</i>&gt;();
+<i class=k>const</i> RETENTATIVAS = 3;
+
+<i class=k>export async function</i> registrar(
+  a: <i class=t>Apontamento</i>,
+): <i class=t>Promise</i>&lt;<i class=t>Resultado</i>&gt; {
+  <i class=k>const</i> agente = <i class=k>await</i> Coletor.conectar();
+
+  <i class=k>if</i> (!agente.online) {
+    <i class=c>// chao de fabrica nao para por causa da rede</i>
+    <i class=k>await</i> enfileirar(a);
+    <i class=k>return</i> { ok: <i class=k>false</i>, motivo: <i class=s>&#39;offline&#39;</i> };
+  }
+
+  <i class=k>for</i> (<i class=k>let</i> i = 0; i &lt; RETENTATIVAS; i++) {
+    <i class=k>const</i> r = <i class=k>await</i> agente.enviar({
+      ...a,
+      em: <i class=k>new</i> <i class=t>Date</i>().toISOString(),
+    });
+
+    <i class=k>if</i> (r.aceito) <i class=k>return</i> { ok: <i class=k>true</i>, id: r.id };
+  }
+
+  <i class=k>return</i> { ok: <i class=k>false</i>, motivo: <i class=s>&#39;sem confirmacao&#39;</i> };
+}
+
+<i class=k>export async function</i> sincronizar() {
+  <i class=k>const</i> pendentes = <i class=k>await</i> drenar();
+  <i class=k>return</i> <i class=t>Promise</i>.all(pendentes.map(registrar));
+}
+<i class=c>// consolida por ordem antes de subir para a nuvem</i>
+<i class=k>export function</i> agrupar(lista: <i class=t>Apontamento</i>[]) {
+  <i class=k>return</i> lista.reduce&lt;<i class=t>Record</i>&lt;string, number&gt;&gt;((acc, a) =&gt; {
+    acc[a.ordem] = (acc[a.ordem] ?? 0) + a.quantidade;
+    <i class=k>return</i> acc;
+  }, {});
+}
+
+<i class=k>export const</i> rotulo = (a: <i class=t>Apontamento</i>) =&gt;
+  <i class=s>`${a.ordem}/${a.posto}`</i>.padStart(12, <i class=s>&#39;0&#39;</i>);</pre>
+            </div>
           </div>
 
-          <div class="ficha__campo">
-            <dt class="mono">Foco</dt>
-            <dd>
-              Segmento industrial
-              <span class="ficha__coord">Produto próprio e projeto dedicado</span>
-            </dd>
-          </div>
-        </dl>
+          <header class="section__head reveal">
+            <p class="section__index mono">03 — A empresa</p>
+            <h2 class="section__title sobre__declaracao" id="sobre-titulo">
+              Depois de vinte anos, resolvemos fazer do nosso jeito.
+            </h2>
+            <p class="section__lead">
+              Sem camada nenhuma entre você e quem desenvolve o sistema que a sua operação vai usar.
+            </p>
+          </header>
+        </div>
+
+        <ul class="garantias reveal">
+          <li class="garantia">
+            <p class="garantia__rotulo mono">Começa pequeno</p>
+            <p class="garantia__texto">Um piloto rodando em produção antes de qualquer compromisso maior. Você decide continuar depois de ver funcionando.</p>
+          </li>
+
+          <li class="garantia">
+            <p class="garantia__rotulo mono">Suporte direto</p>
+            <p class="garantia__texto">Quem atende é quem desenvolveu. Sem nível 1, sem fila de chamado, sem repetir o problema três vezes.</p>
+          </li>
+
+          <li class="garantia">
+            <p class="garantia__rotulo mono">Produto próprio</p>
+            <p class="garantia__texto">SysColect e VectorHub são nossos. Quem corrige o bug é quem escreveu o código — não há terceiro no meio.</p>
+          </li>
+        </ul>
       </div>
     </section>
 

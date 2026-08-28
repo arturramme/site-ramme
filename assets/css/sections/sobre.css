@@ -1,107 +1,195 @@
 /* ==========================================================================
    RAMME TECH — sections/sobre.css
-   Secao 03. Depois de duas secoes diagramaticas (eixo e anel), esta muda de
-   registro: o visual e a propria tipografia. A declaracao ocupa o lugar do
-   desenho e o monograma da marca vira marca d'agua ao fundo — unica vez em
-   que o simbolo aparece em escala grande na pagina.
+   Secao 03. O desafio da secao e de posicionamento, nao de layout: empresa
+   nova, equipe com 20 anos de estrada. A resposta e nao disfarcar o tamanho
+   e sim atacar o que o comprador industrial teme — risco de continuidade.
+   O codigo ao fundo entra vasado, sem caixa: nao e um print de produto, e
+   a materia-prima do que a empresa faz, dissolvendo-se na propria pagina.
    ========================================================================== */
 
 @layer sections {
   .sobre {
+    /* Mesmo valor no respiro das garantias e no recuo inferior do codigo:
+       assim o bloco encosta no filete por construcao, nao por acerto. */
+    --respiro-garantias: clamp(1.5rem, 7svb, 6rem);
+
     position: relative;
     isolation: isolate;
-    overflow: clip;       /* a marca d'agua sangra: nao pode gerar rolagem */
+    overflow: clip;      /* o codigo sangra: nao pode gerar rolagem lateral */
   }
 
-  /* --- Marca d'agua ----------------------------------------------------- */
-  .sobre__marca {
+  /* Contentor que termina onde comecam as garantias: e ele que ancora a
+     janela e impede o codigo de cruzar o filete. */
+  .sobre__topo { position: relative; }
+
+  /* --- Editor -----------------------------------------------------------
+     Nao e a janela inteira: e uma fatia dela, cortada nos dois lados. Sem
+     borda lateral e sem canto arredondado, o editor entra e sai de campo —
+     o que se ve e a parte direita, com o codigo. Tudo desfocado: e
+     atmosfera, nao conteudo. */
+  .ide {
     position: absolute;
     z-index: -1;
-    inset-block-start: 50%;
-    inset-inline-end: clamp(-7rem, -3vw, -1rem);
-    translate: 0 -50%;
-    inline-size: clamp(15rem, 42vw, 34rem);
-    color: var(--accent);
-    opacity: .06;
+    inset-block: calc(-1 * clamp(4rem, 15svb, 10rem)) calc(var(--respiro-garantias) * -1);
+    inset-inline: 40% 0;   /* termina junto com o conteudo, sem sangrar */
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    background:
+      radial-gradient(120% 90% at 12% 0%, color-mix(in oklab, var(--c-brand-700) 20%, transparent), transparent 62%),
+      linear-gradient(180deg, var(--panel-surface), var(--panel-bg));
+    color: var(--panel-text);
+    overflow: hidden;
     pointer-events: none;
+    user-select: none;
+    filter: blur(1.7px);
+    opacity: .8;
+    /* Fade nas duas laterais e no rodape: o editor nao tem inicio, fim nem
+       base visiveis — some antes de encostar no filete das garantias. */
+    -webkit-mask-image:
+      linear-gradient(to right, transparent, #000 22%, #000 82%, transparent),
+      linear-gradient(to bottom, #000 62%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent, #000 22%, #000 82%, transparent),
+      linear-gradient(to bottom, #000 62%, transparent);
+    mask-composite: intersect;
   }
 
-  .sobre__marca svg {
-    inline-size: 100%;
-    block-size: auto;
-    fill: currentColor;
-    stroke: none;
+  /* --- Barra de titulo -------------------------------------------------- */
+  .ide__barra {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+    padding: 0.6rem clamp(0.7rem, 1.5vw, 1rem);
+    border-block-end: 1px solid var(--panel-line);
+    background-color: color-mix(in oklab, var(--panel-bg) 60%, transparent);
   }
 
-  /* --- Declaracao -------------------------------------------------------
-     Bloco tipografico curto e alto contraste: e ele que segura a secao. */
+  .ide__pontos { display: flex; gap: 0.35rem; flex: none; }
+
+  .ide__pontos i {
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--panel-line-strong);
+  }
+
+  .ide__aba {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-xs);
+    background-color: var(--panel-raised);
+    color: var(--panel-text);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    white-space: nowrap;
+  }
+
+  .ide__ts {
+    display: grid;
+    place-items: center;
+    inline-size: 1.1em;
+    block-size: 1.1em;
+    border-radius: 2px;
+    background-color: var(--panel-accent);
+    color: #04121b;
+    font-size: 0.7em;
+    font-weight: 700;
+  }
+
+  .ide__caminho {
+    color: var(--panel-dim);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  /* --- Area de codigo ---------------------------------------------------- */
+  .ide__corpo {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(0.7rem, 1.5vw, 1.1rem);
+    padding: clamp(0.7rem, 1.5vw, 1.1rem) 0 0 clamp(0.7rem, 1.5vw, 1.1rem);
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: clamp(0.625rem, 0.85vw, 0.875rem);
+    line-height: 1.75;
+  }
+
+  .ide__linhas,
+  .ide__codigo {
+    margin: 0;
+    white-space: pre;
+  }
+
+  .ide__linhas {
+    color: var(--panel-dim);
+    opacity: .55;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ide__codigo { color: var(--panel-muted); }
+
+  /* Cores de sintaxe: aqui a superficie e sempre escura, entao sao fixas —
+     nao precisam do color-mix que a versao sem janela usava. */
+  .ide .k { color: var(--panel-accent); }
+  .ide .s { color: var(--c-signal); }
+  .ide .t { color: var(--c-brand-200); }
+  .ide .c { color: var(--panel-dim); }
+  .ide i { font-style: normal; }
+
+  /* Abaixo de 62rem o texto ocupa a largura toda e nao sobra coluna para a
+     janela: ela so atravessaria o titulo e o lead. Legibilidade vence a
+     decoracao — a secao funciona sem ela. */
+  @media (width < 62rem) {
+    .ide { display: none; }
+  }
+
+  /* --- Declaracao -------------------------------------------------------- */
   .sobre__declaracao {
-    max-inline-size: 22ch;
+    max-inline-size: 19ch;
     text-wrap: balance;
   }
 
-  .sobre .section__lead { max-inline-size: 46ch; }
+  .sobre .section__lead { max-inline-size: 40ch; }
 
-
-  /* --- Ficha: placa de identificacao ------------------------------------
-     <dl> e a semantica correta para pares rotulo/valor. Visualmente vira
-     uma regua de tres campos separados por filete. */
-  .ficha {
+  /* --- As tres travas de risco ----------------------------------------
+     Cada uma responde a um medo concreto: "e se der errado", "quem me
+     atende", "quem conserta". ------------------------------------------ */
+  .garantias {
     display: grid;
-    gap: var(--space-m);
-    margin-block-start: clamp(1.25rem, 5svb, 6rem);
-    padding-block-start: clamp(0.75rem, 2.5svb, 1.75rem);
+    gap: clamp(1.25rem, 4svb, 2.5rem);
+    margin-block-start: var(--respiro-garantias);
+    padding-block-start: clamp(1rem, 4svb, 3rem);
     border-block-start: 1px solid var(--line);
   }
 
-  @media (width >= 42rem) {
-    .ficha {
+  @media (width >= 48rem) {
+    .garantias {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0;
-    }
-
-    .ficha__campo + .ficha__campo {
-      padding-inline-start: clamp(1rem, 3vw, 2.5rem);
-      border-inline-start: 1px solid var(--line);
+      column-gap: clamp(1.5rem, 4vw, 3.5rem);
     }
   }
 
-  .ficha dt {
-    margin-block-end: 0.45rem;
-    color: var(--text-dim);
+  .garantia__rotulo {
+    margin-block-end: var(--space-2xs);
+    color: var(--accent);
   }
 
-  .ficha dd {
-    margin: 0;
+  .garantia__texto {
     font-family: var(--font-display);
-    font-size: var(--step-0);
-    font-weight: 500;
-    line-height: 1.35;
-    letter-spacing: -0.012em;
-    color: var(--text);
-  }
-
-  .ficha__pessoas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem 1rem;
-  }
-
-  /* Coordenada real de Novo Hamburgo: detalhe tecnico que ancora a base
-     sem precisar de mapa. */
-  .ficha__coord {
-    display: block;
-    margin-block-start: 0.2rem;
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
     font-weight: 400;
-    letter-spacing: 0.08em;
+    font-size: var(--step--1);
+    line-height: 1.55;
+    letter-spacing: -0.012em;
+    color: var(--text-muted);
   }
 
   @media (height >= 58rem) {
-    .ficha dd { font-size: var(--step-1); }
-    .ficha dt,
-    .ficha__coord { font-size: var(--step--1); }
+    .garantia__texto { font-size: var(--step-0); }
   }
 }
